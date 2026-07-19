@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LPA Store Locator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1a1a2e;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+        h1 { color: #e94560; }
+        .store-card {
+            background-color: #16213e;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px auto;
+            width: 300px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+        }
+        .temperature {
+            font-size: 2em;
+            color: #e94560;
+        }
+        .description {
+            color: #a8a8b3;
+            text-transform: capitalize;
+        }
+    </style>
+</head>
+<body>
+    <h1>LPA Computer Peripherals</h1>
+    <h2>Store Locator & Live Weather</h2>
+    <p>Current weather at each LPA store location in Australia</p>
+
+    {% for store in stores %}
+    <div class="store-card">
+        <h3>{{ store.city }}</h3>
+        <div class="temperature">{{ store.temperature }}°C</div>
+        <div class="description">{{ store.description }}</div>
+        <p>Humidity: {{ store.humidity }}%</p>
+    </div>
+    {% endfor %}
+
+    <footer>
+        <p>Data sourced from OpenWeatherMap API</p>
+    </footer>
+</body>
+</html>
