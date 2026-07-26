@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart - LPA Computer Peripherals</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <style>
+        .cart-container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 0 20px;
+        }
+        .cart-item {
+            background-color: var(--mid-blue);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: 1px solid var(--light-blue);
+        }
+        .cart-item:hover {
+            border-color: var(--gold);
+        }
+        .cart-item-name {
+            font-size: 1.1em;
+            color: var(--white);
+        }
+        .cart-item-price {
+            color: var(--gold);
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+        .remove-btn {
+            background-color: transparent;
+            border: 1px solid #ff4444;
+            color: #ff4444;
+            padding: 5px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .remove-btn:hover {
+            background-color: #ff4444;
+            color: var(--white);
+        }
+        .cart-total {
+            background-color: var(--mid-blue);
+            border-radius: 10px;
+            padding: 25px;
+            text-align: right;
+            border: 1px solid var(--gold);
+            margin-top: 20px;
+        }
+        .cart-total h3 {
+            color: var(--grey);
+            margin-bottom: 10px;
+        }
+        .total-amount {
+            color: var(--gold);
+            font-size: 2em;
+            font-weight: bold;
+        }
+        .checkout-btn {
+            background-color: var(--gold);
+            color: var(--dark-blue);
+            border: none;
+            padding: 15px 40px;
+            border-radius: 5px;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 15px;
+            transition: background-color 0.3s;
+            width: 100%;
+        }
+        .checkout-btn:hover {
+            background-color: var(--gold-dark);
+            color: var(--white);
+        }
+        .empty-cart {
+            text-align: center;
+            padding: 80px 20px;
+            color: var(--grey);
+        }
+        .empty-cart h2 {
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+        .empty-cart a {
+            color: var(--gold);
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav>
+        <a href="/" class="logo">LPA<span> Peripherals</span></a>
+        <ul class="nav-links">
+            <li><a href="/">Home</a></li>
+            <li><a href="/products">Products</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="/contact">Contact</a></li>
+            <li><a href="/cart" class="cart-btn">🛒 Cart <span class="cart-count" id="cart-count">0</span></a></li>
+        </ul>
+    </nav>
+
+    <div class="cart-container">
+        <h2 class="section-title" style="text-align:left; padding: 30px 0 20px;">Your Cart</h2>
+
+        <div id="cart-items">
+        </div>
+
+        <div id="cart-summary" class="cart-total" style="display:none;">
+            <h3>Order Total</h3>
+            <div class="total-amount" id="total-amount">$0.00</div>
+            <button class="checkout-btn" onclick="checkout()">
+                Proceed to Checkout
+            </button>
+        </div>
+
+        <div id="empty-cart" class="empty-cart">
+            <h2>🛒</h2>
+            <h2>Your cart is empty</h2>
+            <p>Looks like you haven't added anything yet.</p>
+            <br>
+            <a href="/products">Browse Products →</a>
+        </div>
+    </div>
+
+    <footer>
+        <h3>LPA Computer Peripherals</h3>
+        <p>Brisbane, Sydney, Melbourne | support@lpa.com.au</p>
+        <br>
+        <p>© 2026 Logic Peripherals Australia. All rights reserved.</p>
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/cart.js') }}"></script>
+    <script>
+        function loadCart() {
+            const cartItemsEl = document.getElementById('cart-items');
+            const cartSummary = document.getElementById('cart-summary');
+            const emptyCart = document.getElementById('empty-cart');
+
+            if (cart.length === 0) {
+                emptyCart.style.display = 'block';
+                cartSummary.style.display = 'none';
+                return;
+            }
+
+            emptyCart.style.display = 'none';
+            cartSummary.style.display = 'block';
+
+            let total = 0;
+            cartItemsEl.innerHTML = '';
+
+            cart.forEach((item, index) => {
+                total += item.price;
+                cartItemsEl.innerHTML += `
+                    <div class="cart-item">
+                        <div class="cart-item-name">${item.name}</div>
+                        <div class="cart-item-price">$${item.price}</div>
+                        <button class="remove-btn" onclick="removeItem(${index})">Remove</button>
+                    </div>
+                `;
+            });
+
+            document.getElementById('total-amount').textContent = '$' + total.toFixed(2);
+            updateCartCount();
+        }
+
+        function removeItem(index) {
+            cart.splice(index, 1);
+            loadCart();
+            updateCartCount();
+        }
+
+        function checkout() {
+            alert('Thank you for your order! This would proceed to payment in the full implementation.');
+            cart = [];
+            loadCart();
+        }
+
+        loadCart();
+    </script>
+
+</body>
+</html>

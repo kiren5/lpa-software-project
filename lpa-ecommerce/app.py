@@ -21,5 +21,10 @@ def index():
 def products():
     return render_template("products.html", products=PRODUCTS)
 
+@app.route("/cart")
+def cart():
+     return render_template ("cart.html")
+
+
 if __name__ == "__main__":
     app.run(debug=True, port=5002)
