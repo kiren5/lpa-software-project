@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LPA Computer Peripherals</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav>
+        <a href="/" class="logo">LPA<span> Peripherals</span></a>
+        <ul class="nav-links">
+            <li><a href="/">Home</a></li>
+            <li><a href="/products">Products</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="/contact">Contact</a></li>
+            <li><a href="/cart" class="cart-btn">🛒 Cart <span class="cart-count" id="cart-count">0</span></a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Premium Computer Peripherals</h1>
+        <p>Australia's leading supplier of high-performance computer peripherals for professionals and gamers alike.</p>
+        <a href="/products" class="hero-btn">Shop Now</a>
+    </section>
+
+    <!-- Featured Products -->
+    <h2 class="section-title">Featured Products</h2>
+    <p class="section-subtitle">Hand-picked selection of our most popular items</p>
+
+    <div class="products-grid">
+        {% for product in products %}
+        <div class="product-card">
+            <div class="product-icon">
+                {% if product.category == 'Mice' %}🖱️
+                {% elif product.category == 'Keyboards' %}⌨️
+                {% elif product.category == 'Cameras' %}📷
+                {% elif product.category == 'Audio' %}🎧
+                {% else %}🔌
+                {% endif %}
+            </div>
+            <h3>{{ product.name }}</h3>
+            <p>{{ product.description }}</p>
+            <div class="product-price">${{ product.price }}</div>
+            <button class="add-to-cart" onclick="addToCart('{{ product.name }}', {{ product.price }})">
+                Add to Cart
+            </button>
+        </div>
+        {% endfor %}
+    </div>
+
+    <!-- Features Section -->
+    <div class="features">
+        <div class="feature-item">
+            <div class="feature-icon">🚚</div>
+            <h3>Free Shipping</h3>
+            <p>Free delivery on all orders over $50 Australia-wide</p>
+        </div>
+        <div class="feature-item">
+            <div class="feature-icon">🔒</div>
+            <h3>Secure Payment</h3>
+            <p>256-bit SSL encryption on all transactions</p>
+        </div>
+        <div class="feature-item">
+            <div class="feature-icon">↩️</div>
+            <h3>Easy Returns</h3>
+            <p>30-day hassle-free return policy</p>
+        </div>
+        <div class="feature-item">
+            <div class="feature-icon">💬</div>
+            <h3>24/7 Support</h3>
+            <p>Expert support available around the clock</p>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <h3>LPA Computer Peripherals</h3>
+        <p>Brisbane, Sydney, Melbourne | support@lpa.com.au</p>
+        <br>
+        <p>© 2026 Logic Peripherals Australia. All rights reserved.</p>
+    </footer>
+
+    <!-- JavaScript for cart -->
+    <script src="{{ url_for('static', filename='js/cart.js') }}"></script>
+
+</body>
+</html>
