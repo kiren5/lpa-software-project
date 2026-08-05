@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LPA Admin - System Admin</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+    <div class="sidebar">
+        <h2>LPA Admin</h2>
+        <a href="/">📊 Dashboard</a>
+        <a href="/stock">📦 Stock</a>
+        <a href="/sales">🧾 Sales & Invoicing</a>
+        <a href="/admin" class="active">👤 System Admin</a>
+    </div>
+
+    <div class="main">
+        <h1>System Administration</h1>
+        <p class="subtitle">Manage system users and access levels — full access is restricted to administrators only</p>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Role</th>
+                    <th>Email</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for user in users %}
+                <tr>
+                    <td>{{ user.name }}</td>
+                    <td>
+                        {% if user.role == 'System Administrator' %}
+                        <span class="badge badge-admin">{{ user.role }}</span>
+                        {% else %}
+                        {{ user.role }}
+                        {% endif %}
+                    </td>
+                    <td>{{ user.email }}</td>
+                    <td><button class="action-btn">Manage</button></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+</body>
+</html>

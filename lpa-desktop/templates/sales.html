@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LPA Admin - Sales & Invoicing</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+    <div class="sidebar">
+        <h2>LPA Admin</h2>
+        <a href="/">📊 Dashboard</a>
+        <a href="/stock">📦 Stock</a>
+        <a href="/sales" class="active">🧾 Sales & Invoicing</a>
+        <a href="/admin">👤 System Admin</a>
+    </div>
+
+    <div class="main">
+        <h1>Sales & Invoicing</h1>
+        <p class="subtitle">Track sales transactions and manage invoices</p>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Invoice ID</th>
+                    <th>Customer</th>
+                    <th>Item</th>
+                    <th>Amount</th>
+                    <th>Date</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for sale in sales %}
+                <tr>
+                    <td>{{ sale.invoice_id }}</td>
+                    <td>{{ sale.customer }}</td>
+                    <td>{{ sale.item }}</td>
+                    <td>${{ sale.amount }}</td>
+                    <td>{{ sale.date }}</td>
+                    <td><button class="action-btn">View Invoice</button></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+</body>
+</html>

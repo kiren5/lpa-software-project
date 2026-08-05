@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LPA Admin - Stock</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+    <div class="sidebar">
+        <h2>LPA Admin</h2>
+        <a href="/">📊 Dashboard</a>
+        <a href="/stock" class="active">📦 Stock</a>
+        <a href="/sales">🧾 Sales & Invoicing</a>
+        <a href="/admin">👤 System Admin</a>
+    </div>
+
+    <div class="main">
+        <h1>Stock Management</h1>
+        <p class="subtitle">View and manage LPA computer peripheral inventory</p>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Product</th>
+                    <th>Category</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in stock %}
+                <tr>
+                    <td>{{ item.name }}</td>
+                    <td>{{ item.category }}</td>
+                    <td>{{ item.quantity }}</td>
+                    <td>${{ item.price }}</td>
+                    <td>
+                        {% if item.quantity < 10 %}
+                        <span class="badge badge-low">Low Stock</span>
+                        {% else %}
+                        <span class="badge badge-ok">In Stock</span>
+                        {% endif %}
+                    </td>
+                    <td><button class="action-btn">Edit</button></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+</body>
+</html>

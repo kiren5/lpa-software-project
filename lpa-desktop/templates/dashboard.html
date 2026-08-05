@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LPA Admin - Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+    <div class="sidebar">
+        <h2>LPA Admin</h2>
+        <a href="/" class="active">📊 Dashboard</a>
+        <a href="/stock">📦 Stock</a>
+        <a href="/sales">🧾 Sales & Invoicing</a>
+        <a href="/admin">👤 System Admin</a>
+    </div>
+
+    <div class="main">
+        <h1>Dashboard</h1>
+        <p class="subtitle">Internal management overview for LPA Computer Peripherals</p>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="label">Total Products</div>
+                <div class="value">{{ stock_count }}</div>
+            </div>
+            <div class="stat-card">
+                <div class="label">Stock Value</div>
+                <div class="value">${{ "%.2f"|format(total_stock_value) }}</div>
+            </div>
+            <div class="stat-card">
+                <div class="label">Total Sales</div>
+                <div class="value">{{ sales_count }}</div>
+            </div>
+            <div class="stat-card">
+                <div class="label">Revenue</div>
+                <div class="value">${{ "%.2f"|format(total_sales) }}</div>
+            </div>
+            <div class="stat-card">
+                <div class="label">System Users</div>
+                <div class="value">{{ user_count }}</div>
+            </div>
+        </div>
+
+        <p style="color: var(--grey);">This desktop application has full access to stock management, sales and invoicing, and system administration — accessible only on the corporate network or via VPN.</p>
+    </div>
+
+</body>
+</html>
