@@ -45,7 +45,7 @@
                         <span class="badge badge-ok">In Stock</span>
                         {% endif %}
                     </td>
-                    <td><button class="action-btn">Edit</button></td>
+                    <td><a href="/stock/edit/{{ item.id }}"><button class="action-btn">Edit</button></a></td>
                 </tr>
                 {% endfor %}
             </tbody>

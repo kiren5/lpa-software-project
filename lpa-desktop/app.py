@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request, redirect, url_for
 
 app = Flask(__name__)
 
@@ -36,6 +36,15 @@ def dashboard():
 @app.route("/stock")
 def stock():
     return render_template("stock.html", stock=STOCK)
+
+@app.route("/stock/edit/<int:item_id>", methods=["GET", "POST"])
+def edit_stock(item_id):
+    item = next((i for i in STOCK if i["id"] == item_id), None)
+    if request.method == "POST":
+        item["quantity"] = int(request.form["quantity"])
+        item["price"] = float(request.form["price"])
+        return redirect(url_for("stock"))
+    return render_template("edit_stock.html", item=item)
 
 @app.route("/sales")
 def sales():
