@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Stock - LPA Admin</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <style>
+        .edit-form {
+            background-color: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 30px;
+            max-width: 400px;
+        }
+        .edit-form label {
+            display: block;
+            color: var(--grey);
+            font-size: 0.9em;
+            margin-bottom: 6px;
+            margin-top: 16px;
+        }
+        .edit-form input, .edit-form select {
+            width: 100%;
+            padding: 10px;
+            border-radius: 6px;
+            border: 1px solid var(--border);
+            background-color: var(--dark);
+            color: var(--white);
+            font-size: 1em;
+        }
+        .edit-form button {
+            background-color: var(--blue);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 6px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 24px;
+            width: 100%;
+        }
+        .edit-form button:hover {
+            background-color: #2563eb;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="sidebar">
+        <h2>LPA Admin</h2>
+        <a href="/">📊 Dashboard</a>
+        <a href="/stock" class="active">📦 Stock</a>
+        <a href="/sales">🧾 Sales & Invoicing</a>
+        <a href="/admin">👤 System Admin</a>
+    </div>
+
+    <div class="main">
+        <h1>Add New Product</h1>
+        <p class="subtitle">Add a new item to LPA's stock inventory</p>
+
+        <form class="edit-form" method="POST">
+            <label>Product Name</label>
+            <input type="text" name="name" required>
+
+            <label>Category</label>
+            <select name="category" required>
+                <option value="Mice">Mice</option>
+                <option value="Keyboards">Keyboards</option>
+                <option value="Cameras">Cameras</option>
+                <option value="Audio">Audio</option>
+                <option value="Accessories">Accessories</option>
+            </select>
+
+            <label>Quantity</label>
+            <input type="number" name="quantity" required>
+
+            <label>Price ($)</label>
+            <input type="number" step="0.01" name="price" required>
+
+            <button type="submit">Add Product</button>
+        </form>
+    </div>
+
+</body>
+</html>

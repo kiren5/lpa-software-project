@@ -46,6 +46,21 @@ def edit_stock(item_id):
         return redirect(url_for("stock"))
     return render_template("edit_stock.html", item=item)
 
+@app.route("/stock/add", methods=["GET", "POST"])
+def add_stock():
+    if request.method == "POST":
+        new_id = max(item["id"] for item in STOCK) + 1
+        new_item = {
+            "id": new_id,
+            "name": request.form["name"],
+            "quantity": int(request.form["quantity"]),
+            "price": float(request.form["price"]),
+            "category": request.form["category"]
+        }
+        STOCK.append(new_item)
+        return redirect(url_for("stock"))
+    return render_template("add_stock.html")
+
 @app.route("/sales")
 def sales():
     return render_template("sales.html", sales=SALES)
