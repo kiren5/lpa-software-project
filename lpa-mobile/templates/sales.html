@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LPA Mobile - Sales</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+    <div class="topbar">
+        <h1>Sales & Invoicing</h1>
+        <p>Recent transactions</p>
+    </div>
+
+    <div class="content">
+        {% for sale in sales %}
+        <div class="item-card">
+            <div class="item-top">
+                <span class="item-name">{{ sale.item }}</span>
+                <span class="item-price">${{ sale.amount }}</span>
+            </div>
+            <div class="item-meta">{{ sale.customer }} · {{ sale.invoice_id }}</div>
+            <div class="item-meta">{{ sale.date }}</div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <div class="bottom-nav">
+        <a href="/"><span class="icon">🏠</span>Home</a>
+        <a href="/stock"><span class="icon">📦</span>Stock</a>
+        <a href="/sales" class="active"><span class="icon">🧾</span>Sales</a>
+    </div>
+
+</body>
+</html>

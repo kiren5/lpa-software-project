@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LPA Mobile - Stock</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+    <div class="topbar">
+        <h1>Stock</h1>
+        <p>Current inventory levels</p>
+    </div>
+
+    <div class="content">
+        {% for item in stock %}
+        <div class="item-card">
+            <div class="item-top">
+                <span class="item-name">{{ item.name }}</span>
+                <span class="item-price">${{ item.price }}</span>
+            </div>
+            <div class="item-meta">{{ item.category }} · Qty: {{ item.quantity }}</div>
+            {% if item.quantity < 10 %}
+            <span class="badge badge-low">Low Stock</span>
+            {% else %}
+            <span class="badge badge-ok">In Stock</span>
+            {% endif %}
+        </div>
+        {% endfor %}
+    </div>
+
+    <div class="bottom-nav">
+        <a href="/"><span class="icon">🏠</span>Home</a>
+        <a href="/stock" class="active"><span class="icon">📦</span>Stock</a>
+        <a href="/sales"><span class="icon">🧾</span>Sales</a>
+    </div>
+
+</body>
+</html>

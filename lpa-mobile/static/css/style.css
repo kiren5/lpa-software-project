@@ -1,0 +1,158 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --dark: #14171f;
+    --card: #1e222c;
+    --border: #2c3140;
+    --blue: #3b82f6;
+    --white: #ffffff;
+    --grey: #94a3b8;
+    --green: #22c55e;
+    --red: #ef4444;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: var(--dark);
+    color: var(--white);
+    max-width: 480px;
+    margin: 0 auto;
+    padding-bottom: 90px;
+    min-height: 100vh;
+}
+
+/* Top bar */
+.topbar {
+    background-color: var(--card);
+    padding: 20px;
+    text-align: center;
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+}
+
+.topbar h1 {
+    font-size: 1.3em;
+    color: var(--blue);
+}
+
+.topbar p {
+    color: var(--grey);
+    font-size: 0.85em;
+    margin-top: 5px;
+}
+
+/* Content */
+.content {
+    padding: 20px;
+}
+
+/* Stat cards - stacked for mobile */
+.stat-card {
+    background-color: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.stat-card .label {
+    color: var(--grey);
+    font-size: 0.9em;
+}
+
+.stat-card .value {
+    font-size: 1.6em;
+    font-weight: bold;
+    color: var(--blue);
+}
+
+/* Item cards - for stock/sales lists */
+.item-card {
+    background-color: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 12px;
+}
+
+.item-card .item-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.item-card .item-name {
+    font-weight: bold;
+    font-size: 1.05em;
+}
+
+.item-card .item-price {
+    color: var(--blue);
+    font-weight: bold;
+}
+
+.item-card .item-meta {
+    color: var(--grey);
+    font-size: 0.85em;
+}
+
+.badge {
+    padding: 4px 10px;
+    border-radius: 10px;
+    font-size: 0.75em;
+    font-weight: bold;
+    display: inline-block;
+    margin-top: 6px;
+}
+
+.badge-low {
+    background-color: rgba(239, 68, 68, 0.2);
+    color: var(--red);
+}
+
+.badge-ok {
+    background-color: rgba(34, 197, 94, 0.2);
+    color: var(--green);
+}
+
+/* Bottom navigation - mobile app style */
+.bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: 480px;
+    background-color: var(--card);
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-around;
+    padding: 12px 0;
+}
+
+.bottom-nav a {
+    color: var(--grey);
+    text-decoration: none;
+    text-align: center;
+    font-size: 0.75em;
+    flex: 1;
+}
+
+.bottom-nav a.active {
+    color: var(--blue);
+}
+
+.bottom-nav .icon {
+    font-size: 1.4em;
+    display: block;
+    margin-bottom: 4px;
+}

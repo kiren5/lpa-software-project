@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LPA Mobile</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+    <div class="topbar">
+        <h1>LPA Mobile</h1>
+        <p>Stock & Sales Management</p>
+    </div>
+
+    <div class="content">
+        <div class="stat-card">
+            <span class="label">Total Products</span>
+            <span class="value">{{ stock_count }}</span>
+        </div>
+        <div class="stat-card">
+            <span class="label">Total Sales</span>
+            <span class="value">{{ sales_count }}</span>
+        </div>
+        <div class="stat-card">
+            <span class="label">Revenue</span>
+            <span class="value">${{ "%.2f"|format(total_sales) }}</span>
+        </div>
+        <p style="color: var(--grey); font-size: 0.85em; margin-top: 20px;">
+            This mobile application provides limited access to stock, sales and invoicing management. System administration is not available on this interface.
+        </p>
+    </div>
+
+    <div class="bottom-nav">
+        <a href="/" class="active"><span class="icon">🏠</span>Home</a>
+        <a href="/stock"><span class="icon">📦</span>Stock</a>
+        <a href="/sales"><span class="icon">🧾</span>Sales</a>
+    </div>
+
+</body>
+</html>
